@@ -1,1 +1,2 @@
-readme
+Put PDF in "Releases" section
+
