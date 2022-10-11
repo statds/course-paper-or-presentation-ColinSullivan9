@@ -15,7 +15,7 @@
 %% meta data
 
 \title{Proposal: WNBA vs NBA Earnings In Comparable Players}
-\author{Colin SullivanN\\
+\author{Colin Sullivan\\
   Department of Statistics\\
   University of Connecticut
 }
@@ -25,22 +25,62 @@
 
 
 \paragraph{Introduction}
-I have chosen to take a close examination of WNBA and NBA players statistics and salaries. There is not a huge amount of current work on the subject, and it was difficult to find a solid enough data set of WNBA players and salaries. This is an important and engaging subject to me because I love basketball and want to see the game grow as much as possible, and hopefully with some statistical analysis of the data I can find trends into why the WNBA salaries are so exorbitantly lower than the NBA's for equivalent players.
+I have chosen to take a close examination of WNBA and NBA players statistics and salaries. It was 
+extremely difficult to find a solid enough data set of WNBA players and salaries. This is an important 
+and engaging subject to me because I love basketball and want to see the game grow as much as possible, 
+and hopefully with some statistical analysis of the data I can find trends into why the WNBA salaries 
+are so exorbitantly lower than the NBA's for equivalent players.
+\newline
+There have been numerous studies surrounding that of the NBA and the WNBA and the differences in salaries.
+For example, one such paper authored by Elle Baker discusses the intra-league salary distribution and
+how WNBA players, despite getting paid far less, have much less "salary inequality"
+\cite{baker2020comparison}. Another argues for an increase in salaries in the WNBA (a cause everyone
+should be able to get behind) by citing the league's growth in fans and revenues \cite{ettienne2019s}.
+There seems to be a lack of specific adjusted salary comparisons, however, and I hope to build off articles
+like these to further the conversation.
 
 \paragraph{Specific Aims}
-I would like to compare not just salaries of WNBA vs NBA players, which is something that has been done numerous times, but to go further in depth and examine salaries vs team salary caps, league revenues, games played, and statistical performances for each player. I am interested to learn if a similarly performing player in the WNBA gets a comparable salary (adjusted for league revenue/average salaries) to an NBA player, if there are certain statistics in the NBA that result in higher adjusted salaries than the WNBA and vice versa, and similar questions.
+I would like to compare not just salaries of WNBA vs NBA players, which is something that has been 
+done numerous times, but to go further in depth and examine salaries vs team salary caps, league 
+revenues, games played, and statistical performances for each player. I am interested to learn i
+f a similarly performing player in the WNBA gets a comparable salary (adjusted for league revenue/average
+salaries) to an NBA player, if there are certain statistics in the NBA that result in higher adjusted 
+salaries than the WNBA and vice versa, and similar questions.
+These are similar, yet more in depth questions to the ones posed by Elle Baker.
 
 \paragraph{Data}
-I have two data sets that I have been manipulating using a python script I wrote to make them more readable. The first is a collection of WNBA players in the 2018 league season and a number of descriptive statistics, including their age, number of games played, and various basketball stats. I also amended it to include their salaries using a separate website link. The second data set is similar but for NBA players in the same season. I plan to amend both to include league average salaries and league income to be able to make league adjusted statistics.
+I have two data sets that I have been manipulating using a python script I wrote to make them more 
+readable. The first is a collection of WNBA players \cite{first} in the 2018 league season and a number of 
+descriptive statistics, including their age, number of games played, and various basketball 
+stats. I also amended it to include their salaries using a separate website link. The second data 
+set is similar but for NBA players in the same season \cite{nba}. I plan to amend both to include league average 
+salaries and league income to be able to make league adjusted statistics.
 
 \paragraph{Research Design and Methods}
-I plan to conduct numerous hypothesis tests on the questions that I outlined in the introduction section, using p values and t-tests to compare average statistics and salaries across leagues. These would be independent t tests. I also plan on utilizing bootstrapping to conduct hundreds or thousands of such tests using Python to make sure that I am getting the most accurate results not affected by strange outliers (there are a few). I am considering incorporating some regression in to predict future stats, but I am unsure if that will be feasible with my current data sets.
+I plan to conduct numerous hypothesis tests on the questions that I outlined in the introduction 
+section, using p values and t-tests to compare average statistics and salaries across leagues. 
+These would be independent t tests. I also plan on utilizing bootstrapping to conduct hundreds 
+or thousands of such tests using Python to make sure that I am getting the most accurate results 
+not affected by strange outliers (there are a few). I am considering incorporating some regression 
+in to predict future stats, but I am unsure if that will be feasible with my current data sets.
 
 \paragraph{Discussion}
-I expect to find that the NBA players simply get more money for similar performances as that of WNBA players. I also expect to find that they receive more adjusted compensation, although that remains to be seen and is the basis of the comparison idea. I hope that my work will further the conversation on gender equal pay across sports, an issue as widespread as any and not limited to only basketball. I also hope that my work will provide concrete data results to drive future changes should the leagues attempt to lesser the gap between player compensations. If the investigation goes differently then expected, it will be a very pleasant surprise (although may not bode well for the efforts of female players to increase pay).
+I expect to find that the NBA players simply get more money for similar performances as that of WNBA 
+players. I also expect to find that they receive more adjusted compensation, although that remains to 
+be seen and is the basis of the comparison idea. I hope that my work will further the conversation on 
+gender equal pay across sports, an issue as widespread as any and not limited to only basketball. 
+I also hope that my work will provide concrete data results to drive future changes should the leagues 
+attempt to lesser the gap between player compensations. If the investigation goes differently then 
+expected, it will be a very pleasant surprise (although may not bode well for the efforts of female 
+players to increase pay).
 
 \paragraph{Conclusion}
-To summarize: My goal in this paper is to further the discussion on the pay gap between gender in basketball and how this holds back the game as a whole. I hope to do this by manipulating existing data sets to include new stats of my own design, which I will then compare to identical stats in the opposite league using hypothesis tests, t-tests, and bootstrapping (and potentially other tests) to come to conclusions regarding the issue and hopefully be pointed in the right direction to find a solution.
+To summarize: My goal in this paper is to further the discussion on the pay gap between gender 
+in basketball and how this holds back the game as a whole. I hope to do this by manipulating 
+existing data sets to include new stats of my own design, which I will then compare to identical 
+stats in the opposite league using hypothesis tests, t-tests, and bootstrapping (and potentially 
+other tests) to come to conclusions regarding the issue and hopefully be pointed in the right 
+direction to find a solution.
 
 
 \bibliography{../Proposal/refs}
