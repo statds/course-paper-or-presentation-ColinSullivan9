@@ -44,3 +44,14 @@ for player in playerstat:
 #             print(player)
 print(playerstat)
     
+    
+header = ['Player_Salary','Player','year_ID','Age','Tm','tm_gms','Tm_Net_Rtg','Pos','G','MP','MP_pct','PER',
+          'TS_pct','ThrPAr','FTr','ORB_pct','TRB_pct','AST_pct','STL_pct','BLK_pct','TOV_pct','USG_pct','OWS',
+          'DWS','WS','WS40','Composite_Rating','Wins_Generated']
+print(header)
+
+with open('WNBA_Combined.csv', 'w') as f:
+    writer = csv.writer(f)
+    writer.writerow(header)
+    for row in playerstat:
+        writer.writerow(row)
