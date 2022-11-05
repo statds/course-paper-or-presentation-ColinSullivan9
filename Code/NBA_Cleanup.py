@@ -52,7 +52,13 @@ print(apended_list)
 header = ['Salary','Player','Pos','Age','Tm','G','MP','PER','TS%','3PAr','FTr','ORB%','DRB%','TRB%','AST%',
           'STL%','BLK%','TOV%','USG%','OWS','DWS','WS','WS/48','OBPM','DBPM','BPM','VORP']
 
+for player in apended_list:
+    while("" in player):
+        player.remove("")
           
+for player in apended_list:
+    if int(player[5]) < 10:
+        apended_list.remove(player)     
           
 with open('NBA_Combined.csv', 'w') as f:
     writer = csv.writer(f)
