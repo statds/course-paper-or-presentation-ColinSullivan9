@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+
+%% preamble: Keep it clean; only include those you need
+\usepackage{amsmath}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+
+% for space filling
+% highlighting hyper links
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
+
+
+%% meta data
+\setlength\parindent{24pt}
+\linespread{2}
+\title{WNBA vs NBA Earnings In Comparable Players}
+\author{Colin Sullivan\\
+  Department of Statistics\\
+  University of Connecticut
+}
+
+\begin{document}
+\maketitle
+
+
+
+\paragraph{Introduction}
+Since the formulation of the Women’s National Basketball Association (WNBA) in 1996, there have been never-ending debates among fans comparing the female counterpart to the much older, more popular National Basketball Association (NBA). Women’s basketball has a rich history marred by frequent sexism, fewer opportunities, and significantly less financial support.
+\par
+Women’s basketball began being played in 1892 at Smith College, just one year after men’s basketball was invented \cite{Shattering_The_Glass}. Due to the gender roles and cultural norms, however, women at the time were believed to be very fragile and unable to play physical sports like basketball at anywhere near the same level as men and thus played under modified rules specially created for them \cite{WNBA_Hist}. Those familiar with basketball will know that it is usually played competitively with 5 players on each team, and each player runs the full court to play offense on one end and defend the other team on the other end. In 1892, however, women initially played “9 on 9”, with the court divided into three areas: offense, defense, and midcourt. Each woman was assigned one of these courts in which they played, such that 3 women on each team were in each section. The players could not leave their section of the court to go into the other, essentially creating three separate “3 on 3” games. The other major difference from the men’s game was that women could only dribble the ball a limited number of times and could not hold it for more than three seconds, rule changed attributed to the fear that the women players might suffer “nervous fatigue” if the game were too strenuous \cite{WNBA_Hist}.
+\par
+Everyone now knows that such attitudes towards women’s sports are ridiculous and sexist. Certainly there are some physical characteristic differences between men and women in sports, but for every male athlete there is a just as accomplished female one. The gradual changing of perspectives on women’s athletics is seen in the evolution of women’s basketball; while men’s basketball has largely stayed the same over the course of its almost 130 year history (key changes including the legalization of the slam dunk and the implementation of the three point line), women’s basketball has shifted slowly to eventually become almost identical. The sport was played inter-collegiately for decades beginning in the late 19th century, but did not enter the professional realm until the 1970s. The sport became officially recognized at the collegiate level by the NCAA in 1982 (a shockingly late introduction), and the Women’s Basketball League (WBL), founded in 1978 and only lasting three seasons, was the first of several failed women’s professional leagues in the late 20th century. In the meantime, the NBA experienced a huge boom in popularity largely due to the emergence of superstars Larry Bird, Magic Johnson, and Michael Jordan. The massive increase in NBA reach and revenue directly led the league creating, funding, and supporting the WNBA in 1996.
+\par
+There are minimal differences between today's women’s basketball and the basketball that men have been playing since inception. The WNBA and NCAAW ball is slightly smaller than that used by male players, the three point line is slightly shorter, and the game clock features four 10 minute quarters as opposed to the NBA’s 12 minute quarters, but for all intents and purposes the games are the same. The rules are otherwise identical, the athletes are similarly talented, the level of play is incredibly high, and the games are very enjoyable to watch. There remains only one massive difference between the two leagues: player salaries.
+\par
+The difference in player salaries is a huge point of contention in women’s basketball discourse and is often the subject of intense ridicule, and it is easy to see why: top NBA players make upwards of 40 million USD per season, not including endorsement deals and other income, while the WNBA most valuable player makes less than the average office worker in New York (an exaggeration, maybe, but Elena Delle Donne made around 120 thousand USD in her MVP year with little extra endorsement money or exposure). An NBA rookie signs one contract and has enough wealth to live comfortably off for the rest of his life, often for generations; a WNBA prospect is encouraged to continue her academic studies to ensure that she is able to get a good job after her career is over. Now, granted, the league revenue is much much less than that of the NBA, but many questions still remain that this paper hopes to address: Are the players paid fairly compared to league revenue? Are they paid fairly compared to NBA players based on basketball production? How can this change?
+\par
+There have been numerous studies surrounding that of the NBA and the WNBA and the differences in salaries.
+For example, one such paper authored by Elle Baker discusses the intra-league salary distribution and
+how WNBA players, despite getting paid far less, have much less "salary inequality"
+\cite{baker2020comparison}. Another argues for an increase in salaries in the WNBA (a cause everyone
+should be able to get behind) by citing the league's growth in fans and revenues \cite{ettienne2019s}.
+There seems to be a lack of specific adjusted salary comparisons, however, and I hope to build off articles
+like these to further the conversation.
+\par
+In this paper, I hope to compare not just salaries of WNBA vs NBA players, which is something that has been done numerous times, but to go further in depth and examine salaries vs team salary caps, league revenues, games played, and statistical performances for each player. The goal is to draw conclusions based on the analysis to learn if a similarly performing player in the WNBA gets a comparable salary (adjusted for league revenue/average salaries) to an NBA player, if there are certain statistics in the NBA that result in higher adjusted salaries than the WNBA and vice versa, and similar questions. These are related, yet more in depth questions to the ones posed by Elle Baker.
+\par
+The paper will begin by discussing the datasets being analyzed and how they were cleaned and prepped for analysis using Python scripts. In the next section, statistical analysis will be performed to try and answer some of the questions posed in this introduction. Following that will be a discussion on the results and hypotheses for best paths forward. Finally, there will be a conclusions section to wrap up the paper and review the results.
+
+
+\paragraph{Data}
+There are two primary data sets that I will be using to conduct the analysis in this paper. The first of these is a database of historical WNBA data dating from 2001-2020, collected by Neil Payne, sports editor at 538, and displayed on his GitHub account \cite{first}. Unlike most data sets, this one contains a multitude of advanced statistics for each player. The statistical categories are as follows:
+\newline
+\par
+Player Name, Year, Age, Team, Team Games, Team Net Rating, Position, Games, Minutes Played, Minutes Played (as a percentage of team total minutes), Player Efficiency Rating, True Shooting \%, Free Throw Rating, Offensive Rebounding \%, Total Rebounding \%, Assist \%, Steal \%, Block \%, Turnover \%, Usage \%, Offensive Win Shares, Defensive Win Shares, Win Shares, Win Shares per 40 games, Composite Rating, and Wins Generated.
+\newline
+\par
+Using another data set from Paine’s Github, a Python script called WNBA\_Cleanup.py was written and used to combine salary data from the two sources and filter out the desired candidate players from the data set. This paper will focus on comparing players from the 2018 NBA and WNBA seasons, so that filter was applied. The script also filtered out players who played less than 5 games and those that did not have salary data, so as to make the set as standardized as possible and remove outliers. The final data set after filtration and combination was called WNBA\_Combined.csv and has data (the aforementioned statistical categories) for 166 WNBA players from the 2018 season.
+\par
+A corresponding NBA dataset was found, this time belonging to Mustafa Baris Camli on the data-sharing site Kaggle \cite{nba}. This data set contains a list of all players from the NBA in the 2017-18 season, with similar advanced statistics to the WNBA dataset:
+\newline
+\par
+Player Name, Position, Age, Team, Games Played, Minutes Played, Player Efficiency Rating, True Shooting \%, 3 Point Attempt Rate, Free Throw Rate, Offensive Rebounding \%, Defensive Rebounding \%, Total Rebounding \%, Assist \%, Steal \%, Block \%, Turnover \%, Usage \%, Offensive Win Shares, Defensive Win Shares, Win Shares, Win Shares per 48 games, Offensive Box +/-, Defensive Box +/-, Box +/-, and VORP.
+\newline
+\par
+The data set notably did not contain player salaries, so a second NBA data set was necessary. One was found on GitHub, created by Erik Gregory Webb, which contains the player salaries for every NBA player from 2000-2020 \cite{nba_salaries}. In a similar manner to the WNBA data, a Python script called NBA\_Cleanup.py was created to combine the data from the two datasets into one csv file. The data was then cleaned up by removing outliers (players playing under 5 games) and those that did not have salary data. The script was also used to combine data for players who played on multiple teams; the original data set would have players listed separately for each team they played on. The final data set after filtration and combinated was called NBA\_Combined.csv and has data (the aforementioned statistical categories, plus player salaries) for 376 NBA players from the 2017-18 season.
+
+
+\paragraph{Research Design and Methods}
+I plan to conduct numerous hypothesis tests on the questions that I outlined in the introduction 
+section, using p values and t-tests to compare average statistics and salaries across leagues. 
+These would be independent t tests. I also plan on utilizing bootstrapping to conduct hundreds 
+or thousands of such tests using Python to make sure that I am getting the most accurate results 
+not affected by strange outliers (there are a few). I am considering incorporating some regression 
+in to predict future stats, but I am unsure if that will be feasible with my current data sets.
+
+\paragraph{Discussion}
+I expect to find that the NBA players simply get more money for similar performances as that of WNBA 
+players. I also expect to find that they receive more adjusted compensation, although that remains to 
+be seen and is the basis of the comparison idea. I hope that my work will further the conversation on 
+gender equal pay across sports, an issue as widespread as any and not limited to only basketball. 
+I also hope that my work will provide concrete data results to drive future changes should the leagues 
+attempt to lesser the gap between player compensations. If the investigation goes differently then 
+expected, it will be a very pleasant surprise (although may not bode well for the efforts of female 
+players to increase pay).
+
+\paragraph{Conclusion}
+To summarize: My goal in this paper is to further the discussion on the pay gap between gender 
+in basketball and how this holds back the game as a whole. I hope to do this by manipulating 
+existing data sets to include new stats of my own design, which I will then compare to identical 
+stats in the opposite league using hypothesis tests, t-tests, and bootstrapping (and potentially 
+other tests) to come to conclusions regarding the issue and hopefully be pointed in the right 
+direction to find a solution.
+
+
+\bibliography{../Proposal/refs}
+\bibliographystyle{chicago}
+
+\end{document}
