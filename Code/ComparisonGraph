@@ -1,0 +1,44 @@
+\documentclass[preprint,floatfix] {revtex4} 
+\newcommand{\rvec}{\mathrm {\mathbf {r}}} 
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, soul}
+
+\begin{document}
+
+\renewcommand{\thetable}{\arabic{table}}
+
+%%\begin{center}
+%%\textbf{\large Supplemental Materials}
+%%\end{center}
+
+\begingroup
+\squeezetable
+\begin{table}
+\caption {\label WWNBA vs NBA Correlation Coefficients For Selected Advanced Statistics} 
+\begin{ruledtabular}
+\begin{tabular}{llllll}
+ Statistics & \multicolumn{2}{c}{League}   \\ 
+\cline{2-3} \cline{5-6} 
+        &  CC: WNBA   & CC: NBA                                                \\    \hline
+ FTr   &  0.001641   & 0.033096        \\       
+ ORB\%   &  0.019717   & 0.000274       \\         
+ TRB\%   &  0.000017   & 0.007801        \\
+ AST\%   &  0.041707   & 0.110984         \\
+ STL\%  &  0.003666   & 0.006126        \\    
+ BLK\%  & 0.000444    & 0.000141      \\
+ TOV\%  & 0.010470   & 0.004207     \\
+ USG\%   & 0.033326    & 0.202527        \\
+ OWS   & 0.117693    & 0.337278        \\
+ DWS  & 0.151183    & 0.234252         \\
+ WS   &  0.153999  & 0.364165                  \\
+ (WS/40)/(WS/48)   &  0.047009   & 0.151640        \\
+
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+\endgroup
+
+\end{document}
