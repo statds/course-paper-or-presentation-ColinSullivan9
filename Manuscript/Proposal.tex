@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{natbib}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
 
 % for space filling
 % highlighting hyper links
@@ -45,7 +47,7 @@ should be able to get behind) by citing the league's growth in fans and revenues
 There seems to be a lack of specific adjusted salary comparisons, however, and I hope to build off articles
 like these to further the conversation.
 \par
-In this paper, I hope to compare not just salaries of WNBA vs NBA players, which is something that has been done numerous times, but to go further in depth and examine salaries vs team salary caps, league revenues, games played, and statistical performances for each player. The goal is to draw conclusions based on the analysis to learn if a similarly performing player in the WNBA gets a comparable salary (adjusted for league revenue/average salaries) to an NBA player, if there are certain statistics in the NBA that result in higher adjusted salaries than the WNBA and vice versa, and similar questions. These are related, yet more in depth questions to the ones posed by Elle Baker.
+In this paper, I hope to compare not just salaries of WNBA vs NBA players, which is something that has been done numerous times, but to go further in depth and examine salaries vs team salary caps, league revenues, games played, and statistical performances for each player. The goal is to draw conclusions on if there are certain statistics in the NBA that result in higher adjusted salaries than the WNBA and vice versa, what the correlation is between them, and determine superstar salary proportions (amongst similar questions). These are related, yet more in depth questions to the ones posed by Elle Baker.
 \par
 The paper will begin by discussing the datasets being analyzed and how they were cleaned and prepped for analysis using Python scripts. In the next section, statistical analysis will be performed to try and answer some of the questions posed in this introduction. Following that will be a discussion on the results and hypotheses for best paths forward. Finally, there will be a conclusions section to wrap up the paper and review the results.
 
@@ -65,16 +67,49 @@ A corresponding NBA dataset was found, this time belonging to Mustafa Baris Caml
 Player Name, Position, Age, Team, Games Played, Minutes Played, Player Efficiency Rating, True Shooting \%, 3 Point Attempt Rate, Free Throw Rate, Offensive Rebounding \%, Defensive Rebounding \%, Total Rebounding \%, Assist \%, Steal \%, Block \%, Turnover \%, Usage \%, Offensive Win Shares, Defensive Win Shares, Win Shares, Win Shares per 48 games, Offensive Box +/-, Defensive Box +/-, Box +/-, and VORP.
 \newline
 \par
-The data set notably did not contain player salaries, so a second NBA data set was necessary. One was found on GitHub, created by Erik Gregory Webb, which contains the player salaries for every NBA player from 2000-2020 \cite{nba_salaries}. In a similar manner to the WNBA data, a Python script called NBA\_Cleanup.py was created to combine the data from the two datasets into one csv file. The data was then cleaned up by removing outliers (players playing under 5 games) and those that did not have salary data. The script was also used to combine data for players who played on multiple teams; the original data set would have players listed separately for each team they played on. The final data set after filtration and combinated was called NBA\_Combined.csv and has data (the aforementioned statistical categories, plus player salaries) for 376 NBA players from the 2017-18 season.
-
+The data set notably did not contain player salaries, so a second NBA data set was necessary. One was found on GitHub, created by Erik Gregory Webb, which contains the player salaries for every NBA player from 2000-2020 \cite{nba_salaries}. In a similar manner to the WNBA data, a Python script called NBA\_Cleanup.py was created to combine the data from the two datasets into one csv file. The data was then cleaned up by removing outliers (players playing under 5 games) and those that did not have salary data. The script was also used to combine data for players who played on multiple teams; the original data set would have players listed separately for each team they played on. The final data set after filtration and combination was called NBA\_Combined.csv and has data (the aforementioned statistical categories, plus player salaries) for 376 NBA players from the 2017-18 season.
+\par
+Finally, in order to compare the players accurately, the goal of checking their stats and salaries against league revenues must be achieved. As such, it was found that the NBA league revenue from 2018 was 8.01 billion USD \cite{NBA_Revenue} and the WNBA league revenue from the same year was 60 million USD \cite{WNBA_Revenue}.
 
 \paragraph{Research Design and Methods}
+Initially, we began by performing a series of paired sample t-tests to confirm some expectations from the data. We do not need to perform a test to determine if NBA players are paid more than WNBA players, as that is commonly known and very obvious. As (INSERT PAPER) discovered, in general WNBA players are actually paid more than NBA players proportional to league revenue. In order to confirm that the data for the 2018 seasons fit with this mold, an initial t-test was performed:
+$$H_0 = \mu_0 \leq \mu_1, H_a = \mu_0 > \mu_1$$
+where $\mu_0$ represents the average WNBA salary proportional to league revenue and $\mu_a$ represents the same for the NBA. The test was done using a significance level of  5\%, or an alpha value of 0.05, and degrees of freedom $n_1 + n_2 - 2 = 516$. By the t-statistic chart, it must be checked if the found t-statistic is greater than 1.646. Using a Python script, Comp\_t\_tests.py, it was found that our t-statistic was 16.56, far greater than 1.646, so it can safely be said with 95\% confidence that our data follows the trend found in (INSERT PAPER)
+\par
+The primary focus of the analysis section was to analyze correlation using linear regression between advanced statistics and salary. This was done once again using python scripts: LR\_Test\_WNBA and LR\_Test\_NBA, for the WNBA and NBA, respectively, were used to read the data from the cleaned datasets and conduct simple linear regression analysis on all the advanced stats against player salaries. Then, using the scipy and matplotlib Python packages, each comparison was graphed with a line of best fit and a correlation coefficient ($R^2$) was found. This correlation coefficient tells us how strong the correlation effect is between the statistic and salary, which will help us draw significantly accurate conclusions from the data then if simply the slope was examined. There were twelve overlapping statistics between the WNBA and NBA datasets, and the correlation coefficients for these statistics in both leagues are graphed below:
+
+\begin{tabular}{*5l}    \toprule
+WNBA vs NBA Correlation & Coefficients For & Selected Advanced Statistics \\\midrule
+
+Statistic 
+&  CC: WNBA   & CC: NBA \\ 
+
+ PER  &  0.019458  & 0.25444 \\
+ FTr   &  0.001641   & 0.033096        \\       
+ ORB\%   &  0.019717   & 0.000274       \\         
+ TRB\%   &  0.000017   & 0.007801        \\
+ AST\%   &  0.041707   & 0.110984         \\
+ STL\%  &  0.003666   & 0.006126        \\    
+ BLK\%  & 0.000444    & 0.000141      \\
+ TOV\%  & 0.010470   & 0.004207     \\
+ USG\%   & 0.033326    & 0.202527        \\
+ OWS   & 0.117693    & 0.337278        \\
+ DWS  & 0.151183    & 0.234252         \\
+ WS   &  0.153999  & 0.364165                  \\
+ (WS/40)/(WS/48)   &  0.047009   & 0.151640        \\
+ \hline
+\end{tabular}
+\newline
+\par
 I plan to conduct numerous hypothesis tests on the questions that I outlined in the introduction 
 section, using p values and t-tests to compare average statistics and salaries across leagues. 
 These would be independent t tests. I also plan on utilizing bootstrapping to conduct hundreds 
 or thousands of such tests using Python to make sure that I am getting the most accurate results 
 not affected by strange outliers (there are a few). I am considering incorporating some regression 
 in to predict future stats, but I am unsure if that will be feasible with my current data sets.
+
+
+
 
 \paragraph{Discussion}
 I expect to find that the NBA players simply get more money for similar performances as that of WNBA 
