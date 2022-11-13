@@ -80,12 +80,15 @@ for stat in WNBA_header[9:]:
         sorted_nba.sort(key=lambda x: float(x[nba_ind]))
 #         print(top10wnba)
 #         print(sorted_nba)
-        for player in sorted_wnba[:10]:
+#         print(sorted_wnba)
+#         print(median_nba)
+        for player in sorted_wnba[-10:]:
 #             print(float(player[0]))
             wnbasum += float(player[0]) / median_wnba
 #             print(wnbasum)
-        for player in sorted_nba[:10]:
+        for player in sorted_nba[-10:]:
             nbasum += float(player[0]) / median_nba
+#             print(float(player[0]) / median_nba)
         wnba_stat_sal_avg = wnbasum / 10
         nba_stat_sal_avg = nbasum / 10
         print("WNBA players in the top 10 in " + str(stat) + " are paid on average " + str(wnba_stat_sal_avg) + " more than league average.")
