@@ -24,7 +24,36 @@
 }
 
 \begin{document}
-\maketitle
+
+   \begin{center}
+       \vspace*{1cm}
+       \Huge
+       \textbf{How to Earn a Salary}
+
+       \Large
+       \vspace{0.5cm}
+        A Closer Look at WNBA and NBA Player Salaries, the Discrepancies, and What Statistics Might Influence Them
+            
+       \vspace{1.5cm}
+
+       \textbf{Colin Sullivan}
+       
+       \vfill
+
+
+       \vfill
+            
+            
+       \vspace{0.8cm}
+     
+         
+        \Large    
+       Department of Statistics\\
+       University of Connecticut\\
+       Storrs, CT\\
+            
+   \end{center}
+\newpage
 
 
 
@@ -76,7 +105,7 @@ Initially, we began by performing a series of paired sample t-tests to confirm s
 $$H_0 = \mu_0 \leq \mu_1, H_a = \mu_0 > \mu_1$$
 where $\mu_0$ represents the average WNBA salary proportional to league revenue and $\mu_a$ represents the same for the NBA. The test was done using a significance level of  5\%, or an alpha value of 0.05, and degrees of freedom $n_1 + n_2 - 2 = 516$. By the t-statistic chart, it must be checked if the found t-statistic is greater than 1.646. Using a Python script, Comp\_t\_tests.py, it was found that our t-statistic was 16.56, far greater than 1.646, so it can safely be said with 95\% confidence that our data follows the trend found in (INSERT PAPER)
 \par
-The primary focus of the analysis section was to analyze correlation using linear regression between advanced statistics and salary. This was done once again using python scripts: LR\_Test\_WNBA and LR\_Test\_NBA, for the WNBA and NBA, respectively, were used to read the data from the cleaned datasets and conduct simple linear regression analysis on all the advanced stats against player salaries. Then, using the scipy and matplotlib Python packages, each comparison was graphed with a line of best fit and a correlation coefficient ($R^2$) was found. This correlation coefficient tells us how strong the correlation effect is between the statistic and salary, which will help us draw significantly accurate conclusions from the data then if simply the slope was examined. There were twelve overlapping statistics between the WNBA and NBA datasets, and the correlation coefficients for these statistics in both leagues are graphed below:
+The primary focus of the analysis section was to analyze correlation using linear regression between advanced statistics and salary. This was done once again using python scripts: LR\_Test\_WNBA and LR\_Test\_NBA, for the WNBA and NBA, respectively, were used to read the data from the cleaned datasets and conduct simple linear regression analysis on all the advanced stats against player salaries. Then, using the scipy and matplotlib Python packages, each comparison was graphed with a line of best fit and a correlation coefficient ($R^2$) was found. This correlation coefficient tells us how strong the correlation effect is between the statistic and salary, which will help us draw significantly more accurate conclusions from the data then if simply the slope was examined. There were twelve overlapping statistics between the WNBA and NBA datasets, and the correlation coefficients for these statistics in both leagues are graphed below:
 
 \begin{tabular}{*5l}    \toprule
 WNBA vs NBA Correlation & Coefficients For & Selected Advanced Statistics \\\midrule
@@ -101,12 +130,29 @@ Statistic
 \end{tabular}
 \newline
 \par
-I plan to conduct numerous hypothesis tests on the questions that I outlined in the introduction 
-section, using p values and t-tests to compare average statistics and salaries across leagues. 
-These would be independent t tests. I also plan on utilizing bootstrapping to conduct hundreds 
-or thousands of such tests using Python to make sure that I am getting the most accurate results 
-not affected by strange outliers (there are a few). I am considering incorporating some regression 
-in to predict future stats, but I am unsure if that will be feasible with my current data sets.
+The graphs for the strongest correlation in both leagues (both the win shares statistic) are shown below:
+\newline
+\includegraphics[width=.85\textwidth]{NBA_WS_Graph.png}
+\newline
+\includegraphics[width=.85\textwidth]{WNBA_WS_Graph.png}
+
+\par
+Finally, within the Comp\_t\_tests.py Python script, analysis was conducted on the salaries of the top players in each league. Instead of looking at simple statistics, work that has been done in (INSERT HOOP DREAMS PAPER), this method used the advanced statistics from the data set. Six statistics were selected: Minutes Played (MP), Player Efficiency Rating (PER), Free Throw rate (FTr), Offensive Win Shares (OWS), Defensive Win Shares (DWS), and Win Shares (WS). The script was written to sort the datasets by these statistics, and the top 10 players in each league in these statistics were extracted. Then the salaries were compared to each respective league's median salary, and the average of these top 10 players relations to the average were compiled. The entries in the graph can be interpreted as follows: If the value is greater than 1, than the top 10 players in that statistic are paid the value as a factor above league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The graph is below:
+\vspace*{1cm}
+\begin{tabular}{*5l} 
+\toprule
+How Much Compared to Avg & the Top 10 Players Are Paid & For Advanced Stats \\\midrule
+
+Statistic &  WNBA  & NBA \\ 
+
+ MP  &  1.04008  & 0.40559 \\
+ PER   &  0.92558   & 0.77316        \\       
+ FTr   &  1.05375   & 0.50153       \\         
+ OWS   & 0.94929    & 0.88026        \\
+ DWS  & 0.91109    & 0.76192       \\
+ WS   &  1.02335  & 0.79457                 \\
+ \hline
+\end{tabular}
 
 
 
