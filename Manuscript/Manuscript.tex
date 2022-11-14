@@ -55,7 +55,8 @@
    \end{center}
 \newpage
 
-
+\paragraph{Abstract}
+In a world where gender pay gaps have been highlighted in nearly every industry, professional sports are no exception. The Women’s National Basketball Association is widely known and accepted to pay very significantly less annually to its players than the male league counterpart, the National Basketball Association. There has been a lot of research into this pay gap, and this paper will look to add to the conversation by examining the structure of contracts in relation to performance. This will be done using statistics from the 2018 seasons of each respective league, using datasets cleaned up and analyzed using various python scripts to eventually draw conclusions on the relation between performance and pay for male and female athletes.
 
 \paragraph{Introduction}
 Since the formulation of the Women’s National Basketball Association (WNBA) in 1996, there have been never-ending debates among fans comparing the female counterpart to the much older, more popular National Basketball Association (NBA). Women’s basketball has a rich history marred by frequent sexism, fewer opportunities, and significantly less financial support.
@@ -137,7 +138,7 @@ The graphs for the strongest correlation in both leagues (both the win shares st
 \includegraphics[width=.85\textwidth]{WNBA_WS_Graph.png}
 
 \par
-Finally, within the Comp\_t\_tests.py Python script, analysis was conducted on the salaries of the top players in each league. Instead of looking at simple statistics, work that has been done in (INSERT HOOP DREAMS PAPER), this method used the advanced statistics from the data set. Six statistics were selected: Minutes Played (MP), Player Efficiency Rating (PER), Free Throw rate (FTr), Offensive Win Shares (OWS), Defensive Win Shares (DWS), and Win Shares (WS). The script was written to sort the datasets by these statistics, and the top 10 players in each league in these statistics were extracted. Then the salaries were compared to each respective league's median salary, and the average of these top 10 players relations to the average were compiled. The entries in the graph can be interpreted as follows: If the value is greater than 1, than the top 10 players in that statistic are paid the value as a factor above league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The graph is below:
+Finally, within the Comp\_t\_tests.py Python script, analysis was conducted on the salaries of the top players in each league. Instead of looking at simple statistics, work that has been done in (DiCicio), this method used the advanced statistics from the data set. Six statistics were selected: Minutes Played (MP), Player Efficiency Rating (PER), Free Throw rate (FTr), Offensive Win Shares (OWS), Defensive Win Shares (DWS), and Win Shares (WS). The script was written to sort the datasets by these statistics, and the top 10 players in each league in these statistics were extracted. Then the salaries were compared to each respective league's median salary, and the average of these top 10 players relations to the average were compiled. The entries in the graph can be interpreted as follows: If the value is greater than 1, than the top 10 players in that statistic are paid the value as a factor above league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The graph is below:
 \vspace*{1cm}
 \begin{tabular}{*5l} 
 \toprule
@@ -145,12 +146,12 @@ How Much Compared to Avg & the Top 10 Players Are Paid & For Advanced Stats \\\m
 
 Statistic &  WNBA  & NBA \\ 
 
- MP  &  1.04008  & 0.40559 \\
- PER   &  0.92558   & 0.77316        \\       
- FTr   &  1.05375   & 0.50153       \\         
- OWS   & 0.94929    & 0.88026        \\
- DWS  & 0.91109    & 0.76192       \\
- WS   &  1.02335  & 0.79457                 \\
+ MP  &  1.445  & 5.353 \\
+ PER   &  1.254   & 5.608        \\       
+ FTr   &  1.087   & 2.053       \\         
+ OWS   & 1.445    & 5.666        \\
+ DWS  & 1.435    & 3.462       \\
+ WS   &  1.530  & 5.446                 \\
  \hline
 \end{tabular}
 
@@ -158,22 +159,22 @@ Statistic &  WNBA  & NBA \\
 
 
 \paragraph{Discussion}
-I expect to find that the NBA players simply get more money for similar performances as that of WNBA 
-players. I also expect to find that they receive more adjusted compensation, although that remains to 
-be seen and is the basis of the comparison idea. I hope that my work will further the conversation on 
-gender equal pay across sports, an issue as widespread as any and not limited to only basketball. 
-I also hope that my work will provide concrete data results to drive future changes should the leagues 
-attempt to lesser the gap between player compensations. If the investigation goes differently then 
-expected, it will be a very pleasant surprise (although may not bode well for the efforts of female 
-players to increase pay).
+The data found from the initial t-tests supported what had been found in the current literature. It was confirmed that in our 2018 data WNBA players are paid significantly less than NBA players, a known fact. It was also confirmed with a very high degree of certainty that WNBA players are paid more than NBA players proportional to league revenue (around 60 million for the WNBA, 8 billion for the NBA). This confirms the findings of (DiCicio), but was found to be particularly interesting and is in general counterintuitive to the narrative surrounding pay in women’s basketball. It also changes the conversation on how the pay gap can be narrowed.
+\par
+The main focus of the research was the regression analysis. Simple linear regression was used to create $R^2$ correlation coefficients for every advanced statistic in the WNBA and NBA datasets compared to player salaries. Since the base salary and proportional salary in the leagues are so different (as shown in the aforementioned t-tests), it seemed most appropriate to simply see which statistics correlated the strongest to salary increases. Table 1 shows the selection of correlation coefficients for the thirteen matching statistics between the two league data sets.
+\par
+Surprisingly, the correlation coefficients for almost every statistic was very low. For certain less consequential statistics (like Free Throw rate) this discovery was not shocking, but for more relatively important ones like Win Shares / Minutes it was interesting to see such low correlation between performance and pay. That being said, of the most important statistics - Player Efficiency Rating and Win Shares (including the Offensive and Defensive Win Shares sub statistics) - the NBA saw a significant increase in correlation coefficient, with all being above 0.23. The WNBA, on the flipside, did not see such an increase: Player Efficiency Rating had an extremely small coefficient, and while WS, OWS and DWS were all higher than other statistics, they still capped out at 0.15, lower than 6 of the NBA statistics coefficients. The graphs for the two highest correlations, Win Shares, are shown, and it can be visibly seen that higher performance in the NBA leads to higher pay more often than in the women’s counterpart league.
+\par
+Finally, some data manipulation was done to find a more simple statistic to try and determine how excellence in a statistic impacts pay. As Table 2 shows, there is a much clearer trend in performing in the top 10 in a statistic and a pay increase. As the WNBA pay spread is much smaller than the NBA’s it is expected that there will be less of an increase. An encouraging sign is found in this table: finishing top 10 in every statistic (with the exception of Free Throw rate, the least consequential of the statistics) led to a significant pay increase in both leagues. The NBA consistently saw an increase of over 5 times league median salary, while the WNBA hovered around 1.5 times league median.
+\par
+None of the data found is incredibly shocking, but it adds important information to the current research on the subject. For the WNBA to be treated seriously by fans and potential athletes, they must begin to move closer to the NBA formula of greater correlation of performance to player paychecks. The WNBA is obviously limited by their revenue, but the product is there; women’s basketball is just as enjoyable to watch as mens, but the players remain treated so extremely differently. There is money to be had in women’s basketball, as evidenced by several of the collegiate players at the University of Connecticut making over \$1 million per year in endorsement deals under the new NCAA Name Image Likeness rules. To see such insignificant correlation between a statistic like Player Efficiency Rating and pay in the WNBA vs the NBA is eye opening to the gender sport inequality.
 
 \paragraph{Conclusion}
-To summarize: My goal in this paper is to further the discussion on the pay gap between gender 
-in basketball and how this holds back the game as a whole. I hope to do this by manipulating 
-existing data sets to include new stats of my own design, which I will then compare to identical 
-stats in the opposite league using hypothesis tests, t-tests, and bootstrapping (and potentially 
-other tests) to come to conclusions regarding the issue and hopefully be pointed in the right 
-direction to find a solution.
+The motivation of this paper was to try and determine what goes into the pay gap in men’s and women’s basketball and primarily to see if the salary models were similar (just dramatically scaled down in the much poorer league). It was confirmed that the data for the 2018 season fit with precedent in terms of NBA salaries being much higher and WNBA salaries being higher proportional to league revenue. The regression analysis revealed that the correlation coefficients for NBA salaries to selected impactful advanced statistics was in general much higher than that of the WNBA, revealing that the aforementioned salary models were dramatically different. It was, however, determined that finishing in the top 10 in said statistics resulted in pay increases over league median, however the NBA’s pay increases were significantly more due to their much larger spread in salaries. 
+\par
+Next steps from this data involve researching what goes into league revenue and attempting to determine why it has never been profitable. It is important to acknowledge one last time that the WNBA is hamstrung by this lack of revenue, but the contract structures reinforce male dominant stereotypes in an already masculine world with a widespread gender pay gap in nearly every industry. Ultimately, the NBA players get rewarded much more for performance than the WNBA, which may motivate them to improve more and bring more excitement and popularity to the league. With less monetary motivation to perform, the WNBA continues to sell itself well short of its potential and does not give the players the respect that they deserve. 
+
+
 
 
 \bibliography{../Proposal/refs}
