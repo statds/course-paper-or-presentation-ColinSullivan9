@@ -1,3 +1,5 @@
+
+
 \documentclass[12pt]{article}
 
 %% preamble: Keep it clean; only include those you need
@@ -60,34 +62,35 @@ In a world where gender pay gaps have been highlighted in nearly every industry,
 Association is widely known and accepted to pay very significantly less annually to its players than the male league counterpart, the National Basketball 
 Association. There has been a lot of research into this pay gap, and this paper will look to add to the conversation by examining the structure of 
 contracts in relation to performance. This will be done using statistics from the 2018 seasons of each respective league, using datasets cleaned up and 
-analyzed with various python scripts to eventually draw conclusions on the relation between performance and pay for male and female athletes.	
+analyzed with various Python scripts to eventually draw conclusions on the relation between performance and pay for male and female athletes.	
 \end{abstract}
 
 \section{Introduction}
+\hspace*{10mm}
 Since the formulation of the Women’s National Basketball Association (WNBA) in 1996, there have been never-ending debates among fans comparing the female 
 league to the much older, more popular National Basketball Association (NBA). Women’s basketball has a rich history marred by frequent sexism, fewer 
 opportunities, and significantly less financial support.
 \par
 Women’s basketball began being played in 1892 at Smith College, just one year after men’s basketball was invented \citep{Shattering_The_Glass}. Due to the 
-gender roles and cultural norms of the time, however, women at the time were believed to be very fragile and unable to play physical sports like 
+gender roles and cultural norms of the time, however, women were believed to be very fragile and unable to play physical sports like 
 basketball at anywhere near the same level as men. As such, women played under modified rules specially created for them \citep{WNBA_Hist}. Those familiar 
 with basketball will know that it is usually played competitively with 5 players on each team, and each player runs the full court to play offense on one 
-end and defend the other team on the other end. In 1892, however, women initially played “9 on 9”, with the court divided into three areas: offense, 
-defense, and mid-court. Each player was assigned one of these courts in which they played, such that 3 women on each team were in each section. The 
+end and defend the other team on the other. In 1892, however, women initially played “9 on 9”, with the court divided into three areas: offense, 
+defense, and mid-court. Each player was assigned to play within one of these cours, such that 3 women on each team were in each section. The 
 players could not leave their section of the court to go into the other, essentially creating three separate “3 on 3” games. The other major rule change 
 from Naismith's game was that women could only dribble the ball a limited number of times and could not hold it for more than three seconds, a rule 
-attributed to the fear that the women players might suffer “nervous fatigue” if the game were too strenuous \citep{WNBA_Hist}.
+attributed to the fear that the players might suffer “nervous fatigue” if the game were too strenuous \citep{WNBA_Hist}.
 \par
 The gradual changing of perspectives on women’s athletics is seen in the evolution of women’s basketball; while the game of men’s basketball has largely 
 stayed the same over the course of its almost 130 year history (key changes including the legalization of the slam dunk and the implementation of the 
 three point line), women’s basketball has shifted slowly to eventually become almost identical. The sport was played inter-collegiately for decades 
-beginning in the late 19th century, but did not enter the professional realm until the 1970s. The sport became officially recognized at the collegiate 
+beginning in the late 19th century, but did not enter the professional realm until the 1970s. Women's basketball became officially recognized at the collegiate 
 level by the NCAA in 1982 (a shockingly late introduction), and the Women’s Basketball League (WBL), founded in 1978 and only lasting three seasons, was 
 the first of several failed women’s professional leagues in the late 20th century. Meanwhile, the NBA experienced a huge boom in popularity largely due to 
 the emergence of superstars Larry Bird, Magic Johnson, and Michael Jordan. The massive increase in NBA reach and revenue directly led to the league 
 creating, funding, and supporting the WNBA in 1996.
 \par
-There are minimal differences between today's women’s basketball and the basketball that men have been playing since inception. The WNBA and wome's 
+There are minimal differences between today's women’s basketball and the basketball that men have been playing since inception. The WNBA and women's 
 collegiate ball is slightly smaller than that used by male players, the three point line is a foot to two feet shorter, and the game clock features 
 four 10 minute quarters as opposed to the NBA’s 12 minute quarters. Nevertheless, for all intents and purposes the games are the same. The rules are otherwise 
 identical, the athletes are similarly talented, the level of play is incredibly high, and the games are very enjoyable to watch. There remains only one 
@@ -113,7 +116,7 @@ Basketball". DiCicio performed regression analysis on the correlation between wi
 for example). She was, however, unable to come to any significant conclusions beyond that of basic comparisons of salaries \citep{Hoop_Dreams}.
 \par
 This paper will not compare just salaries of WNBA vs NBA players, which is something that has been done numerous times, but will go further in depth and 
-examine the correlation between individual player performance and performance in numerous advanced statistics. The goal is to draw conclusions on if there 
+examine the correlation between individual player pay and performance in numerous advanced statistics. The goal is to draw conclusions on if there 
 are certain statistics in the NBA that result in higher adjusted salaries than the WNBA and vice versa, what the correlation is between them, and 
 determine "superstar" salary factors.
 \par
@@ -124,6 +127,7 @@ the results.
 
 
 \section{Data}
+\hspace*{10mm}
 There are two primary data sets that I will be using to conduct the analysis in this paper. The first of these is a database of historical WNBA data 
 dating from 2001-2020, collected by Neil Payne, sports editor at 538, and displayed on his GitHub account \citep{first}. Unlike most data sets, this one 
 contains a multitude of advanced statistics for each player.
@@ -183,7 +187,8 @@ was found that the NBA league revenue from 2018 was 8.01 billion USD \citep{NBA_
 \citep{WNBA_Revenue}.
 
 \section{Research Design and Methods}
-Initially, we began by performing a series of paired sample t-tests to confirm some expectations from the data. We do not need to perform a test to 
+\hspace*{10mm}
+Initially, we began by performing a paired sample t-test to confirm some expectations from the data. We do not need to perform a test to 
 determine if NBA players are paid more than WNBA players, as that is commonly known and very obvious. As $\textit{Forbes}$ basketball author David Berri 
 discovered, in general WNBA players are still paid significantly less than NBA players proportional to league revenue \citep{WNBA_Revenue}. In order to 
 confirm that the data for the 2018 seasons fit with this mold, an initial t-test was performed:
@@ -200,7 +205,7 @@ conduct simple linear regression analysis on all the advanced stats against play
 comparison was graphed with a line of best fit and a correlation coefficient ($R^2$) was found. This correlation coefficient tells us how strong the 
 correlation effect is between the statistic and salary, which will help us draw significantly more accurate conclusions from the data then if simply the 
 slope was examined. There were twelve overlapping statistics between the WNBA and NBA datasets, and the correlation coefficients for these statistics in 
-both leagues are graphed below, with the standard error in parenthesis:
+both leagues are shown below, with the standard error in parenthesis:
 
 \begin{tabular}{*5l}    \toprule
 WNBA vs NBA Correlation & Coefficients For & Selected Advanced Statistics \\\midrule
@@ -222,6 +227,7 @@ Statistic
  WS   &  0.153999 (0.365)  & 0.364165 (0.164)                 \\
  (WS/40)/(WS/48)   &  0.047009 (0.022)  & 0.151640 (0.004) \\
  \hline
+ Sample Size & 142 & 376
 \end{tabular}
 \newline
 \par
@@ -233,12 +239,12 @@ The graphs for the strongest correlation in both leagues (both the win shares st
 
 \par
 Finally, within the Comp\_t\_tests.py Python script, analysis was conducted on the salaries of the top players in each league. Instead of looking at 
-simple statistics, work that has been done in (DiCicio), this method used the advanced statistics from the data set. Six statistics were selected: Minutes 
+simple statistics, work that has been done by DiCicio \citep{Hoop_Dreams}, this method used the advanced statistics from the data set. Six statistics were selected: Minutes 
 Played (MP), Player Efficiency Rating (PER), Free Throw rate (FTr), Offensive Win Shares (OWS), Defensive Win Shares (DWS), and Win Shares (WS). The 
 script was written to sort the datasets by these statistics, and the top 10 players in each league in these statistics were extracted. Then the salaries 
 were compared to each respective league's median salary, and the average of these top 10 players relations to the average were compiled. The entries in 
 the graph can be interpreted as follows: If the value is greater than 1, than the top 10 players in that statistic are paid the value as a factor above 
-league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The graph is 
+league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The chart is 
 below:
 \vspace*{1cm}
 \begin{tabular}{*5l} 
@@ -260,11 +266,11 @@ Statistic &  WNBA  & NBA \\
 
 
 \section{Discussion}
-The data found from the initial t-tests supported what had been found in the current literature. It was confirmed that in our 2018 data WNBA players are 
-paid significantly less than NBA players, a known fact. It was also confirmed with a very high degree of certainty that WNBA players are paid more than 
-NBA players proportional to league revenue (around 60 million for the WNBA, 8 billion for the NBA). This confirms the findings of (DiCicio), but was found 
-to be particularly interesting and is in general counterintuitive to the narrative surrounding pay in women’s basketball. It also changes the conversation 
-on how the pay gap can be narrowed.
+\hspace*{10mm}
+The data found from the initial t-test supported what had been found in the current literature. It was confirmed that in our 2018 data WNBA players are 
+paid significantly less than NBA players, a known fact. It was also confirmed with a very high degree of certainty that WNBA players are paid less than 
+NBA players proportional to league revenue (around 60 million for the WNBA, 8 billion for the NBA). This confirms the findings of David Berri \citep{WNBA_Revenue}, and was found 
+to be particularly interesting while being generally intuitive based upon the narrative surrounding pay in women’s basketball.
 \par
 The main focus of the research was the regression analysis. Simple linear regression was used to create $R^2$ correlation coefficients for every advanced 
 statistic in the WNBA and NBA datasets compared to player salaries. Since the base salary and proportional salary in the leagues are so different (as 
@@ -280,7 +286,7 @@ still capped out at 0.15, lower than 6 of the NBA statistics coefficients. The g
 be visibly seen that higher performance in the NBA leads to higher pay more often than in the women’s counterpart league.
 \par
 The visual distribution of pay vs performance in the graphs is particularly interesting. While the correlation coefficient for both the WNBA and the NBA 
-when compared to Win Shared is relatively high, the NBA graph looks much more traditionally distributed: Examining it finds the data generally following 
+when compared to Win Shares is relatively high, the NBA graph looks much more traditionally distributed: Examining it finds the data generally following 
 the trend line. The WNBA graph, however, looks much less traditional. It forms a sort of "U" shape, where players are almost all clustered into two salary 
 buckets which are distributed similarly over the y axis. While there are more "higher performing" players in the higher pay bucket, the distribution is 
 nevertheless strange to see.
@@ -299,6 +305,7 @@ Connecticut making over \$1 million per year in endorsement deals under the new 
 between a statistic like Player Efficiency Rating and pay in the WNBA vs the NBA is eye opening to the gender sport inequality.
 
 \section{Conclusion}
+\hspace*{10mm}
 The motivation of this paper was to try and determine what goes into the pay gap in men’s and women’s basketball and primarily to see if the salary 
 models were similar (just dramatically scaled down in the much poorer league). It was confirmed that the data for the 2018 season fit with precedent 
 in terms of NBA salaries being much higher, both base and proportional to league revenue. The regression analysis revealed that the correlation 
@@ -324,3 +331,4 @@ If interested, the data sets and Python scripts used can be found in the GitHub 
 \bibliographystyle{chicago}
 
 \end{document}
+
