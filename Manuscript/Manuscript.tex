@@ -1,6 +1,6 @@
 
 
-\documentclass[12pt]{article}
+\documentclass[12pt, titlepage]{article}
 
 %% preamble: Keep it clean; only include those you need
 \usepackage{amsmath}
@@ -26,35 +26,36 @@
 }
 
 \begin{document}
+\maketitle
 
-   \begin{center}
-       \vspace*{1cm}
-       \Huge
-       \textbf{How to Earn a Salary}
-
-       \Large
-       \vspace{0.5cm}
-        A Closer Look at WNBA and NBA Player Salaries, the Discrepancies, and What Statistics Might Influence Them
-            
-       \vspace{1.5cm}
-
-       \textbf{Colin Sullivan}
-       
-       \vfill
-
-
-       \vfill
-            
-            
-       \vspace{0.8cm}
-     
-         
-        \Large    
-       Department of Statistics\\
-       University of Connecticut\\
-       Storrs, CT\\
-            
-   \end{center}
+%   \begin{center}
+%       \vspace*{1cm}
+%       \Huge
+%       \textbf{How to Earn a Salary}
+%
+%       \Large
+%       \vspace{0.5cm}
+%        A Closer Look at WNBA and NBA Player Salaries, the Discrepancies, and What Statistics Might Influence Them
+%            
+%       \vspace{1.5cm}
+%
+%       \textbf{Colin Sullivan}
+%       
+%       \vfill
+%
+%
+%       \vfill
+%            
+%            
+%       \vspace{0.8cm}
+%     
+%         
+%        \Large    
+%       Department of Statistics\\
+%       University of Connecticut\\
+%       Storrs, CT\\
+%            
+%   \end{center}
 \newpage
 
 \begin{abstract}
@@ -141,15 +142,17 @@ aforementioned statistical categories) for 166 WNBA players from the 2018 season
 \par
 A corresponding NBA dataset was found, this time belonging to Mustafa Baris Camli on the data-sharing site Kaggle \citep{nba}. This data set contains a 
 list of all players from the NBA in the 2017-18 season, with similar advanced statistics to the WNBA dataset. The statistics found in the datasets can be 
-seen in the following table:
-\newline
-\par
-\begin{tabular}{*5l} 
+seen in \ref{tab:stats}.
+
+\begin{table}[tbp]
+    \caption{Statistics From the Datasets}
+    \label{tab:stats}
+\centering
+\begin{tabular}{crr}
 \toprule
-Statistics From the Datasets \\\midrule
 
 Common Statistics & WNBA Exclusive & NBA Exclusive\\ 
-\hline
+\midrule
  Player Name  &  Team Net Rating & 3 Point Attempt Rate  \\
  Age &  Composite Rating & Offensive Box +/-      \\ 
  Position &  Wins Generated & Defensive Box +/-\\
@@ -171,9 +174,10 @@ Common Statistics & WNBA Exclusive & NBA Exclusive\\
  Win Shares per 40 games & & \\
  Salary & & \\
  
- \hline
+ \bottomrule
 \end{tabular}
-\newline
+\end{table}
+
 \par
 The data set notably did not contain player salaries, so a second NBA data set was necessary. One was found on GitHub, created by Erik Gregory Webb, which 
 contains the player salaries for every NBA player from 2000-2020 \citep{nba_salaries}. In a similar manner to the WNBA data, a Python script called 
@@ -205,14 +209,18 @@ conduct simple linear regression analysis on all the advanced stats against play
 comparison was graphed with a line of best fit and a correlation coefficient ($R^2$) was found. This correlation coefficient tells us how strong the 
 correlation effect is between the statistic and salary, which will help us draw significantly more accurate conclusions from the data then if simply the 
 slope was examined. There were twelve overlapping statistics between the WNBA and NBA datasets, and the correlation coefficients for these statistics in 
-both leagues are shown below, with the standard error in parenthesis:
+both leagues are shown in \ref{tab:main_data}, with the standard error in parenthesis.
 
-\begin{tabular}{*5l}    \toprule
-WNBA vs NBA Correlation & Coefficients For & Selected Advanced Statistics \\\midrule
 
-Statistic 
-&  CC: WNBA   & CC: NBA \\ 
+\begin{table}[tbp]
+    \caption{WNBA vs NBA Correlation Coefficients For Selected Advanced Statistics}
+    \label{tab:main_data}
+\centering
+\begin{tabular}{crr}
+\toprule
 
+Statistic &  CC: WNBA   & CC: NBA \\ 
+\midrule
  PER  &  0.019458 (1.576)  & 0.25444 (0.014) \\
  FTr   &  0.001641 (0.036)  & 0.033096 (0.009)       \\ 
  ORB\%   &  0.019717 (0.929)  & 0.000274 (0.273)       \\   
@@ -227,15 +235,29 @@ Statistic
  WS   &  0.153999 (0.365)  & 0.364165 (0.164)                 \\
  (WS/40)/(WS/48)   &  0.047009 (0.022)  & 0.151640 (0.004) \\
  \hline
- Sample Size & 142 & 376
+ Sample Size & 142 & 376\\
+ \bottomrule
 \end{tabular}
-\newline
+\end{table}
+
+
 \par
-The graphs for the strongest correlation in both leagues (both the win shares statistic) are shown below:
-\newline
-\includegraphics[width=.85\textwidth]{NBA_WS_Graph.png}
-\newline
-\includegraphics[width=.85\textwidth]{WNBA_WS_Graph.png}
+The graphs for the strongest correlation in both leagues (both the win shares statistic) are shown in figures \ref{fig:NBA_WS} and \ref{fig:WNBA_WS}.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=.75\textwidth]{NBA_WS_Graph.png}
+  \caption{NBA Player Salaries vs Win Share Performance.}
+  \label{fig:NBA_WS}
+\end{figure}
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=.75\textwidth]{WNBA_WS_Graph.png}
+  \caption{WNBA Player Salaries vs Win Share Performance.}
+  \label{fig:WNBA_WS}
+\end{figure}
+
+
 
 \par
 Finally, within the Comp\_t\_tests.py Python script, analysis was conducted on the salaries of the top players in each league. Instead of looking at 
@@ -245,22 +267,25 @@ script was written to sort the datasets by these statistics, and the top 10 play
 were compared to each respective league's median salary, and the average of these top 10 players relations to the average were compiled. The entries in 
 the graph can be interpreted as follows: If the value is greater than 1, than the top 10 players in that statistic are paid the value as a factor above 
 league average. If the value is less than 1, than the top 10 players in that statistic are paid the value as a factor below league average. The chart is 
-below:
-\vspace*{1cm}
-\begin{tabular}{*5l} 
+shown in \ref{tab:top10}.
+
+\begin{table}[tbp]
+    \caption{How Much Compared to Avg the Top 10 Players Are Paid For Advanced Stats.}
+    \label{tab:top10}
+\centering
+\begin{tabular}{crr}
 \toprule
-How Much Compared to Avg & the Top 10 Players Are Paid & For Advanced Stats \\\midrule
-
 Statistic &  WNBA  & NBA \\ 
-
+\midrule
  MP  &  1.445  & 5.353 \\
  PER   &  1.254   & 5.608        \\       
  FTr   &  1.087   & 2.053       \\         
  OWS   & 1.445    & 5.666        \\
  DWS  & 1.435    & 3.462       \\
- WS   &  1.530  & 5.446                 \\
- \hline
+ WS   &  1.530  & 5.446        \\
+ \bottomrule
 \end{tabular}
+\end{table}
 
 
 
@@ -274,7 +299,7 @@ to be particularly interesting while being generally intuitive based upon the na
 \par
 The main focus of the research was the regression analysis. Simple linear regression was used to create $R^2$ correlation coefficients for every advanced 
 statistic in the WNBA and NBA datasets compared to player salaries. Since the base salary and proportional salary in the leagues are so different (as 
-shown in the aforementioned t-tests), it seemed most appropriate to simply see which statistics correlated the strongest to salary increases. Table 1 
+shown in the aforementioned t-tests), it seemed most appropriate to simply see which statistics correlated the strongest to salary increases. \ref{tab:main_data} 
 shows the selection of correlation coefficients for the thirteen matching statistics between the two league data sets.
 \par
 Surprisingly, the correlation coefficients for almost every statistic was very low. For certain less consequential statistics (like Free Throw rate) this 
@@ -285,13 +310,13 @@ see such an increase: Player Efficiency Rating had an extremely small coefficien
 still capped out at 0.15, lower than 6 of the NBA statistics coefficients. The graphs for the two highest correlations, Win Shares, are shown, and it can 
 be visibly seen that higher performance in the NBA leads to higher pay more often than in the women’s counterpart league.
 \par
-The visual distribution of pay vs performance in the graphs is particularly interesting. While the correlation coefficient for both the WNBA and the NBA 
+The visual distribution of pay vs performance in figures \ref{fig:NBA_WS} and \ref{fig:WNBA_WS} is particularly interesting. While the correlation coefficient for both the WNBA and the NBA 
 when compared to Win Shares is relatively high, the NBA graph looks much more traditionally distributed: Examining it finds the data generally following 
-the trend line. The WNBA graph, however, looks much less traditional. It forms a sort of "U" shape, where players are almost all clustered into two salary 
+the trend line. The WNBA figure \ref{fig:WNBA_WS}, however, looks much less traditional. It forms a sort of "U" shape, where players are almost all clustered into two salary 
 buckets which are distributed similarly over the y axis. While there are more "higher performing" players in the higher pay bucket, the distribution is 
 nevertheless strange to see.
 \par
-Finally, some data manipulation was done to find a more simple statistic to try and determine how excellence in a statistic impacts pay. As Table 2 shows, 
+Finally, some data manipulation was done to find a more simple statistic to try and determine how excellence in a statistic impacts pay. As \ref{tab:top10} shows, 
 there is a much clearer trend in performing in the top 10 in a statistic and a pay increase. As the WNBA pay spread is much smaller than the NBA’s it is 
 expected that there will be less of an increase. An encouraging sign is found in this table: finishing top 10 in every statistic (with the exception of 
 Free Throw rate, the least consequential of the statistics) led to a significant pay increase in both leagues. The NBA consistently saw an increase of 
@@ -313,7 +338,7 @@ coefficients for NBA salaries to selected impactful advanced statistics was in g
 aforementioned salary models were dramatically different. It was, however, determined that finishing in the top 10 in said statistics resulted in pay 
 increases over league median, however the NBA’s pay increases were significantly more due to their much larger spread in salaries. 
 \par
-Perhaps one of the most interesting conclusions is drawn when examining the graphs of NBA and WNBA pay distribution against Win Shares performance. 
+Perhaps one of the most interesting conclusions is drawn when examining figures \ref{fig:NBA_WS} and \ref{fig:WNBA_WS} of NBA and WNBA pay distribution against Win Shares performance. 
 Not only is there much less pay increase opportunity in the WNBA, but it seems as though almost all players are grouped into one of two pay rates, 
 which may or may not be based solely upon performance.
 \par
